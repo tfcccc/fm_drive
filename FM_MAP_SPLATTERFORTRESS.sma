@@ -14,35 +14,35 @@
 
 /**
  * @brief Precaches the rocket model.
- * @return Always returns 0.
+ * @return Always returns PLUGIN_CONTINUE.
  */
 public plugin_precache()
 {
     precache_model("models/rpgrocket.mdl");
-    return 0;
+    return PLUGIN_CONTINUE;
 }
 
 /**
  * @brief Initializes the plugin.
- * @return Always returns 0.
+ * @return Always returns PLUGIN_CONTINUE.
  */
 public plugin_init()
 {
     register_plugin("FM_MAP_SPLATTERFORTRESS", "1.0", "teh ORiON");
-    RegisterHam(Ham_Use, "multi_manager", "MMUSE", 0);
-    return 0;
+    RegisterHam(Ham_Use, "multi_manager", "mm_use", 0);
+    return PLUGIN_CONTINUE;
 }
 
 /**
- * @brief Handles the MMUSE event.
+ * @brief Handles the use event on a multimanager with the name mirror (used on splaterfortress).
  * @param id The entity ID.
- * @param a The first parameter.
- * @param b The second parameter.
- * @param c The third parameter.
- * @param d The fourth parameter.
- * @return Always returns 0.
+ * @param idcaller The first parameter.
+ * @param idactivator The second parameter.
+ * @param use_type The third parameter.
+ * @param value The fourth parameter.
+ * @return Always returns PLUGIN_CONTINUE.
  */
-public MMUSE(id, a, b, c, Float:d)
+public mm_use(id, idcaller, idactivator, use_type, Float:value)
 {
     new sStoreClassName[32];
     pev(id, pev_targetname, sStoreClassName, 31);
@@ -53,13 +53,13 @@ public MMUSE(id, a, b, c, Float:d)
         entity_set_model(iEnt, "models/rpgrocket.mdl");
         attachviews(iEnt);
     }
-    return 0;
+    return PLUGIN_CONTINUE;
 }
 
 /**
  * @brief Attaches the rocket view to all connected players.
  * @param ent The entity ID of the rocket.
- * @return Always returns 0.
+ * @return Always returns PLUGIN_CONTINUE.
  */
 public attachviews(ent)
 {
@@ -72,11 +72,9 @@ public attachviews(ent)
             if (is_user_connected(i))
             {
                 attach_view(i, ent);
-                i++;
             }
-            i++;
         }
         i++;
     }
-    return 0;
+    return PLUGIN_CONTINUE;
 }
