@@ -8,8 +8,8 @@ Installation instructions: http://metamod.org/metamod.html
 
 Summary of installation instructions:
 
-	Copy metamod.dll to addons/metamod
-	The folder structure should be Half-Life/tfc/addons/metamod, create any folders that don't exist
+	Copy metamod.dll to addons/metamod/dlls
+	The folder structure should be Half-Life/tfc/addons/metamod/dlls, create any folders that don't exist
 	In Half-Life/tfc, edit these lines liblist.gam to make tfc use the metamod dll for your operating system (gamedll for windows and gamedll_linux for linux):
 		gamedll "dlls/mp.dll"
 		gamedll_linux "dlls/cs_i386.so"
