@@ -43,6 +43,15 @@ Download: https://www.python.org/downloads/
 
 Python is a programming language used to run the compile script and is more straightforward to install than the TFC addons.
 
+### Compiling
+Create a folder called plugins in the root of this repository and an empty plugins.ini file inside of the plugins folder.
+
+Run this command from the root of this repository to compile the plugins:
+
+	python compile.py
+
+The first time you run the compile script, it will prompt you for directories it should use. Enter "plugins" for the plugins and configs paths, and "tools" for the compiler path. If you make a mistake when entering these directories the first time, you can fix it by editing the ~/AppData/Roaming/SkillzWorld/compilehelper.json configuration file created by the script.
+
 ## Configuring plugins to enable:
 Edit Plugins.ini in addons/metamod folder (create if doesn't exist)
 
