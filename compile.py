@@ -68,9 +68,9 @@ if should_save_settings:
 		json.dump(settings, f, indent = '\t')
 
 cwd = os.getcwd()
-path_include = os.path.join(cwd, 'include')
-file_script_version = os.path.join(path_include, 'script_version.inc')
-file_script_name    = os.path.join(path_include, 'script_name.inc')
+path_include = os.path.join(cwd, 'feckinmad')
+file_script_version = os.path.join(path_include, 'fm_script_version.inc')
+file_script_name    = os.path.join(path_include, 'fm_script_name.inc')
 print(f'Using compiler: "{file_compiler}"')
 print('Creating these files:')
 print(f' "{file_script_version}"')
@@ -107,8 +107,8 @@ for file in files:
 	_, filename = os.path.split(file)
 	print(f'Compiling plugin code: "{filename}"')
 	
-	with open(file_script_version, 'w') as f: f.write(f'stock const _SCRIPT_DATE[] = "{today_str}"')
-	with open(file_script_name   , 'w') as f: f.write(f'stock const _SCRIPT_NAME[] = "{filename_extless}"')
+	with open(file_script_version, 'w') as f: f.write(f'stock const FM_SCRIPT_DATE[] = "{today_str}"')
+	with open(file_script_name   , 'w') as f: f.write(f'stock const FM_SCRIPT_NAME[] = "{filename_extless}"')
 	subprocess.run(
 		(file_compiler, file, f'-o{file_plugin}')
 	)
@@ -136,4 +136,4 @@ elif compiled_plugins:
 				f.write(f'\n{new_plugin} debug ; Added by compile.py')
 
 print(f'Compiled {compiled_n} plugin{"s"*(compiled_n != 1)}.')
-#input('Press enter to quit.\n')
+input('Press enter to quit.\n')
