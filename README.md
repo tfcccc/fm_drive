@@ -1,5 +1,5 @@
 ## Development environment setup
-FM uses Metamod, AMX Mod X, and Orpheu to build and run plugins.
+FM uses Metamod, AMX Mod X, Orpheu, and Python to build and run plugins.
 
 ### Metamod
 Download (pick the binary for your operating system): http://metamod.org/
@@ -38,6 +38,10 @@ The folder structure should be fm_base_plugins/tools/ with the contents of the s
 
 Once all scripting folders have been copied, move the include folder from tools to the root of this repository.
 
+### Python
+Download: https://www.python.org/downloads/
+
+Python is a programming language used to run the compile script and is more straightforward to install than the TFC addons.
 
 ## Configuring plugins to enable:
 Edit Plugins.ini in addons/metamod folder (create if doesn't exist)
