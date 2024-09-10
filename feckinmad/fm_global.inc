@@ -87,7 +87,7 @@ stock fm_CommandUsage(id, iCommand, iNum, iClient = 0)
 
 stock fm_CopyStruc(eStruct1[], eStruct2[], iStructLen)
 {
-	for (new i = 0; i <= iStructLen; i++)
+	for (new i = 0; i < iStructLen; i++)
 	{
 		eStruct2[i] = eStruct1[i]
 	}
