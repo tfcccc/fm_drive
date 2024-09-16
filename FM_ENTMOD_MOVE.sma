@@ -152,7 +152,7 @@ StopMoving(id)
 // -------------------------------------------------------------------------------------------------------------
 public Forward_PreThink(id) 
 {	
-	static Float:fGameTime, Float:fPlayerNextEntMoveTime[MAX_PLAYERS], Float:fPlayerOrigin[3], Float:fAimOrigin[3]
+	static Float:fGameTime, Float:fPlayerNextEntMoveTime[MAX_PLAYERS+1], Float:fPlayerOrigin[3], Float:fAimOrigin[3]
 	
 	if (g_iPlayerMoveEnt[id] != 0)
 	{

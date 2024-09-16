@@ -9,7 +9,7 @@
 
 #define PC_CIVILIAN 11
 
-new bool:g_bPlayerSpeedRunning[MAX_PLAYERS] // Local cache of speedrunning status
+new bool:g_bPlayerSpeedRunning[MAX_PLAYERS+1] // Local cache of speedrunning status
 
 new const g_sFlagModel[] = "models/fm/speedrun/fm_flag_hires.mdl"
 new const g_sFlagQuery[] = "SELECT load_flags, startflag_x, startflag_y, startflag_z, endflag_x, endflag_y, endflag_z FROM maps WHERE map_id = %d LIMIT 1;"

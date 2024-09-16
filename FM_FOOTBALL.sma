@@ -52,9 +52,9 @@ new const g_iTeamColours[MAX_TEAMS + 1][3] =
 new g_iBallEnt // Entity IDs of the ball
 new g_iKeyValueForward, g_iTrailSprite, g_iMaxPlayers 
 
-new Float:g_fNextKick[MAX_PLAYERS] // Gametime a player can next kick
-new g_bWeaponStripped[MAX_PLAYERS] // Whether a player has had their weapons stripped. If this is false +attack will not kick the ball. +kick will
-new bool:g_bKicking[MAX_PLAYERS] // Whether the player is pressing +kick
+new Float:g_fNextKick[MAX_PLAYERS+1] // Gametime a player can next kick
+new g_bWeaponStripped[MAX_PLAYERS+1] // Whether a player has had their weapons stripped. If this is false +attack will not kick the ball. +kick will
+new bool:g_bKicking[MAX_PLAYERS+1] // Whether the player is pressing +kick
 
 new Float:g_fLastStuckTime // Gametime the ball was last considered stuck
 new g_iLastStuckCount // Number of times the ball has been considered stuck
