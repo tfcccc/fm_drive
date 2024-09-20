@@ -57,3 +57,6 @@ native fm_GetPlayerModelIndexByIdent(iModelIdent)
 native fm_GetPlayerModelIdentByIndex(iModelIndex)
 native fm_GetSubBodyPartTotalByModelIndex(iModelIndex)
 native fm_GetSubBodyNameByIndex(iModelIndex, iBodyIndex, iSubBodyIndex, sSubBodyName[MODEL_NAME_LEN])
+
+
+native fm_GetPlayerCurrentModelIndex(id)
