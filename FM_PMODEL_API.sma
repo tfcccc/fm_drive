@@ -56,7 +56,7 @@ public plugin_natives()
 	register_native("fm_GetPlayerModelIdentByIndex", "Native_GetPlayerModelIdentByIndex")
 	register_native("fm_GetPlayerModelDataByIndex", "Native_GetPlayerModelDataByIndex")
 	register_native("fm_GetPlayerModelNameByIndex", "Native_GetPlayerModelNameByIndex")
-	register_native("fm_GetPlayerModelNameByIndex", "Native_GetPlayerModelNameByIndex")
+	
 
 	// Misc natives
 	register_native("fm_GetPlayerModelIndexByName", "Native_GetPlayerModelIndexByName")
@@ -103,7 +103,7 @@ public Native_GetPlayerModelIndexByName(iPlugin, iParams)
 public Native_GetSubBodyNameByIndex(iPlugin, iParams)
 {
 	new iModelIndex = get_param(1)	
-	if (iModelIndex < 0 || iModelIndex > g_iModelNum)
+	if (iModelIndex < 0 || iModelIndex >= g_iModelNum)
 	{
 		log_error(AMX_ERR_NATIVE, "Model index out of range (%d)", iModelIndex)
 		return 0
@@ -135,7 +135,7 @@ public Native_GetSubBodyNameByIndex(iPlugin, iParams)
 public Native_GetSubBodyPartTotalByModelIndex(iPlugin, iParams)
 {
 	new iModelIndex = get_param(1)	
-	if (iModelIndex < 0 || iModelIndex > g_iModelNum)
+	if (iModelIndex < 0 || iModelIndex >= g_iModelNum)
 	{
 		log_error(AMX_ERR_NATIVE, "Model index out of range (%d)", iModelIndex)
 		return -1
@@ -225,7 +225,7 @@ public Native_GetPlayerModelIndexByIdent(iPlugin, iParams)
 public Native_GetPlayerModelIdentByIndex(iPlugin, iParams)
 {
 	new iModelIndex = get_param(1)	
-	if (iModelIndex < 0 || iModelIndex > g_iModelNum)
+	if (iModelIndex < 0 || iModelIndex >= g_iModelNum)
 	{
 		log_error(AMX_ERR_NATIVE, "Model index out of range (%d)", iModelIndex)
 		return -1
