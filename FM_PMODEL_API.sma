@@ -2,6 +2,7 @@
 #include "feckinmad/fm_precache" // fm_SafePrecacheModel()
 #include "feckinmad/fm_playermodel_api"
 #include <fakemeta>
+#include <tfcx>
 
 new Array:g_ModelList
 
@@ -303,8 +304,12 @@ public Native_RemovePlayerModel(iPlugin, iParams)
 		return 0
 	}
 
-	set_pdata_int(id, PD_REPLACE_MODEL, 0, PD_LINUX_DIFF)
-	set_pdata_int(id, PD_REPLACE_SKIN, 0, PD_LINUX_DIFF)
+
+	tfc_clearmodel(id)
+
+	//set_pdata_int(id, PD_REPLACE_MODEL, 0, PD_LINUX_DIFF)
+	//set_pdata_int(id, PD_REPLACE_SKIN, 0, PD_LINUX_DIFF)
+	
 	g_iPlayerCurrentPlayerModel[id] = -1
 
 	return 1
