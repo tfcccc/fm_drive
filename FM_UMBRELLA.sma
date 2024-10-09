@@ -7,7 +7,7 @@
 #define PC_CIVILIAN 11
 #define WEAPON_AXE 5
 #define TOGGLE_DELAY 1.0
-#define DONATION_AMOUNT 5
+#define DONATION_AMOUNT 0
 
 new const g_sClassLimitKeys[][] =
 {
@@ -31,9 +31,11 @@ new bool:g_bEnabled, g_iKeyValueForward
 
 new g_pCvarAlwaysEnable
 
+static bool:g_bDetect
+
 public plugin_precache()
 {
-	g_pCvarAlwaysEnable = register_cvar("fm_umbrella_selective", "0")
+	g_pCvarAlwaysEnable = register_cvar("fm_umbrella_selective", "0"); //It will not work on maps with civilian class added with MAPPORT plugin...
 
 	if (get_pcvar_num(g_pCvarAlwaysEnable) == 1)
 		g_iKeyValueForward = register_forward(FM_KeyValue, "Forward_KeyValue")
@@ -47,32 +49,39 @@ public Forward_KeyValue(iEnt, Kvd)
 {
 	if (!pev_valid(iEnt)) 
 		return FMRES_IGNORED
-
-	static sBuffer[32]; get_kvd(Kvd, KV_ClassName, sBuffer, charsmax(sBuffer))
-	static bool:bDetect
-
-	if (!equal(sBuffer, "info_tfdetect"))
-	{
+	
+	if (g_bDetect) {
 		// Unregister the forward since we are no longer recieving keys from the info_tfdetect ent
-		if (bDetect) 
-			UnregisterKeyValueForward()
+		UnregisterKeyValueForward()	
 		return FMRES_IGNORED
-	}
+	}	
+
+	new sBuffer[32];
+	get_kvd(Kvd, KV_ClassName, sBuffer, charsmax(sBuffer))
+	
+
+	if (!equal(sBuffer, "info_tfdetect"))		
+		return FMRES_IGNORED
+	
 		
-	bDetect = true
+	
 	get_kvd(Kvd, KV_KeyName, sBuffer, charsmax(sBuffer))
+	
+	new sBuffer2[32];
 	for (new i = 0; i < sizeof g_sClassLimitKeys; i++)
 	{	
 		if (!equal(sBuffer, g_sClassLimitKeys[i]))
-			return FMRES_IGNORED
+			continue
 
-		get_kvd(Kvd, KV_Value,  sBuffer, charsmax(sBuffer))
-		if (str_to_num(sBuffer) != -1)
-			return FMRES_IGNORED
-
-		PrecacheModels()
-
-		UnregisterKeyValueForward()
+		get_kvd(Kvd, KV_Value,  sBuffer2, charsmax(sBuffer2))
+		if (str_to_num(sBuffer2) == -1){
+			
+			g_bDetect = true
+			UnregisterKeyValueForward()
+			PrecacheModels()
+			
+			break
+		}
 	}
 
 	return FMRES_IGNORED
@@ -156,8 +165,12 @@ SetWeaponModel(id, const sViewModel[], const sPlayerModel[])
 
 UnregisterKeyValueForward()
 {
-	unregister_forward(FM_KeyValue, g_iKeyValueForward)
-	g_iKeyValueForward = 0
+	if(g_iKeyValueForward){
+		
+		g_iKeyValueForward = 0
+		unregister_forward(FM_KeyValue, g_iKeyValueForward)
+	
+	}
 }
 
 CheckPlayerDonation(id)
@@ -186,7 +199,7 @@ public fm_ScreenMessage(sBuffer[], iSize)
 	
 	if (iGoldUsersCount <= 0)
 	{
-		formatex(sBuffer, iSize, "Donate £5 and recieve a golden umbrella. (Brand new without tags)")
+		formatex(sBuffer, iSize, "Donate Â£5 and recieve a golden umbrella. (Brand new without tags)")
 	}
 	else
 	{
